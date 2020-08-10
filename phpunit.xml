@@ -4,6 +4,7 @@
 	backupGlobals="false"
 	backupStaticAttributes="false"
 	bootstrap="vendor/autoload.php"
+	cacheResult="false"
 	colors="true"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
@@ -21,9 +22,6 @@
   <testsuites>
     <testsuite name="base">
       <directory suffix="Test.php">./tests/</directory>
-    </testsuite>
-    <testsuite name="fold">
-      <directory suffix="Test.php">./tests/fold-unfold</directory>
     </testsuite>
   </testsuites>
   <php>

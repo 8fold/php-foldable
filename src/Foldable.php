@@ -1,12 +1,9 @@
 <?php
+declare(strict_types=1);
 
-namespace Eightfold\Foldable\Interfaces;
+namespace Eightfold\Foldable;
 
-use \Closure;
-
-use Eightfold\Foldable\Interfaces\PhpMagicMethods;
-
-interface Foldable extends PhpMagicMethods
+interface Foldable // extends PhpMagicMethods
 {
     /**
      * No generic implementation. Acts as reminder to developers to performance
@@ -17,7 +14,7 @@ interface Foldable extends PhpMagicMethods
      *
      * @return any          Becomes value return of `main()`.
      */
-    static public function processedMain($main);
+    // static public function processedMain($main);
 
     /**
      * Generic implementation returns the original array of `args` unchanged.
@@ -26,7 +23,7 @@ interface Foldable extends PhpMagicMethods
      *
      * @return any          Becomes value return of `args()`.
      */
-    static public function processedArgs(...$args);
+    // static public function processedArgs(...$args);
 
     /**
      * Static constructor.
@@ -38,7 +35,7 @@ interface Foldable extends PhpMagicMethods
      *
      * @return class        Custom type implementing Foldable interface.
      */
-    static public function fold($main, ...$args): Foldable;
+    static public function fold(...$args): Foldable;
 
     /**
      * Return a single value that has, presumably, been manipulated or changed
@@ -50,9 +47,9 @@ interface Foldable extends PhpMagicMethods
      */
     public function unfold();
 
-    public function if($bool, Closure $closure = null);
+    // public function if($bool, Closure $closure = null);
 
     // TODO: Consider a method called "if" - then deprecate
     // TODO: Can this be made to always return a Foldable?? Don't think so.
-    public function condition($bool, Closure $closure = null);
+    // public function condition($bool, Closure $closure = null);
 }
