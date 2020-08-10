@@ -1,6 +1,6 @@
 {
   "name": "8fold/php-foldable",
-  "description": "...",
+  "description": "Foundation for developing Fluent Interfaces and the Pipeline Pattern",
   "type": "library",
   "license": "MIT",
   "authors": [
