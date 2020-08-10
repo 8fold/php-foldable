@@ -1,9 +1,14 @@
 {
-  "name": "",
-  "description": "",
+  "name": "8fold/php-foldable",
+  "description": "...",
   "type": "library",
   "license": "MIT",
-  "authors": [],
+  "authors": [
+    {
+      "name": "Josh Bruce",
+      "email": "josh@8fold.pro"
+    }
+  ],
   "require": {
     "php": "~7"
   },
@@ -12,10 +17,12 @@
   },
   "autoload": {
     "psr-4": {
+      "Eightfold\\Foldable\\": "./src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
+      "Eightfold\\Foldable\\Tests\\": "./tests/"
     }
   },
   "config": {
