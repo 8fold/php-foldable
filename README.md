@@ -12,7 +12,11 @@ Foldable is made of three components:
 
 ## Usage
 
-{brief example of how to use the product}
+See also:
+
+- [Interface only class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestInterfaceOnly.php); essentially the implementation of the [FoldableImp trait](https://github.com/8fold/php-foldable/blob/master/src/FoldableImp.php)
+- [Traits only class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestTraitOnly.php); essentially the imlementation of the [Fold class](https://github.com/8fold/php-foldable/blob/master/src/Fold.php)
+- [TestExtension class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestExtension.php) demonstrating how to extend the library.
 
 ## Details
 
@@ -23,4 +27,8 @@ Primary goals are:
 
 ## Other
 
-{links or descriptions or license, versioning, and governance}
+- [Versioning](https://github.com/8fold/php-foldable/blob/master/.github/VERSIONING.md)
+- [Contributing](https://github.com/8fold/php-foldable/blob/master/.github/CONTRIBUTING.md)
+- [Security Policy](https://github.com/8fold/php-foldable/blob/master/.github/SECURITY.md)
+- [Code of Coduct](https://github.com/8fold/php-foldable/blob/master/.github/CODE_OF_CONDUCT.md)
+- [Governance](https://github.com/8fold/php-foldable/blob/master/.github/GOVERNANCE.md)
