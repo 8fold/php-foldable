@@ -1,16 +1,15 @@
 <?php
 
-namespace Eightfold\Foldable\Traits;
+namespace Eightfold\Shoop\Traits;
 
 use \Closure;
 
-use Eightfold\Foldable\Interfaces\Foldable;
-use Eightfold\Foldable\Traits\PhpMagicMethodsImp;
+use Eightfold\Shoop\Traits\ShoopedImpExtensions\PhpMagicMethodsImp;
 
 use Eightfold\Shoop\Helpers\Type;
 
 use Eightfold\Shoop\Shoop;
-
+use Eightfold\Shoop\Interfaces\Foldable;
 
 trait FoldableImp
 {
@@ -62,7 +61,7 @@ trait FoldableImp
             $array = $return;
             $return = [];
             foreach ($array as $member => $value) {
-                if (Type::isShooped($value)) {
+                if (Type::isFoldable($value)) {
                     $value = $value->unfold();
                 }
                 $return[$member] = $value;
