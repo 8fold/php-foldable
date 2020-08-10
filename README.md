@@ -8,7 +8,9 @@ Foldable is made of three components:
 
 ## Installation
 
-{how does one install the product}
+```bash
+composer require 8fold/php-foldable
+```
 
 ## Usage
 
