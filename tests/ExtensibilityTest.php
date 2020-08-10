@@ -19,10 +19,10 @@ class ExtensibilityTest extends TestCase
         $actual = TestExtension::fold(
             "string ",
             TestExtension::fold(
-                TestExtension::string("Foldable ")
+                TestExtension::fold("Foldable ")
             ),
             TestExtension::fold(
-                TestExtension::string("Foldable ")
+                TestExtension::fold("Foldable ")
             ),
             "string"
         )->unfold();

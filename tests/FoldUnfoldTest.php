@@ -16,7 +16,7 @@ class FoldUnfoldTest extends TestCase
         $expected = "Hello!";
         $actual = Fold::fold(
             Fold::fold(
-                Fold::string("Hello!")
+                Fold::fold("Hello!")
             )
         )->unfold();
         $this->assertEqualsWithPerformance($expected, $actual);
