@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Eightfold\Foldable;
 
@@ -10,23 +11,18 @@ use Eightfold\Foldable\FoldableImp;
 use Eightfold\Foldable\Bendable;
 use Eightfold\Foldable\BendableImp;
 
-class Bend implements Foldable, Bendable
+/**
+ * A Bend is simialar to a Fold in that it is the atomic class.
+ *
+ * See `Tests\Bends\ArrayToString` see how extending this class can reduce your
+ * workload. All the other implementations replicate this skeleton for fine-
+ * grained control. Extending this class is just easier.
+ *
+ * You will be required to write an `__invoke` method. We cannot add it the
+ * defined interfaces while giving your flexibility for argument lists as
+ * improved type safety.
+ */
+abstract class Bend implements Foldable, Bendable
 {
     use FoldableImp, BendableImp;
-
-    public function __construct($payload, ...$bends)
-    {
-        $this->main = $payload;
-        $this->args = $bends;
-    }
-
-    public function unfold()
-    {
-        return (new Pipeline(null, ...$this->args))->process($this->main);
-    }
-
-    public function __invoke($payload, ...$args)
-    {
-        return $this->main;
-    }
 }

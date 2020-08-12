@@ -4,18 +4,13 @@ namespace Eightfold\Foldable;
 
 trait BendableImp
 {
-    static public function bend($payload)
+    static public function bend()
     {
-        return static::bendWith($payload);
+        return static::bendWith();
     }
 
-    static public function bendWith($payload, ...$args)
+    static public function bendWith(...$args)
     {
-        return new static($payload, ...$args);
-    }
-
-    public function unfold()
-    {
-        return (new Pipeline(null, ...$this->args))->process($this->main);
+        return new static(...$args);
     }
 }
