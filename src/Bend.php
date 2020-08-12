@@ -25,7 +25,7 @@ class Bend implements Foldable, Bendable
         return (new Pipeline(null, ...$this->args))->process($this->main);
     }
 
-    public function __invoke($payload)
+    public function __invoke($payload, ...$args)
     {
         return $this->main;
     }
