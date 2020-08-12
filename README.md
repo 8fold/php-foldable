@@ -1,10 +1,18 @@
 # 8fold Foldable
 
-Foldable is made of three components:
+Foldable gives you `interfaces`, `traits`, and `classes` that allow for easy creation of fluent APIs and implementations of the pipe pattern. The idea is to create the opening and closing and let you develop the points in between.
 
-1. The Foldable `interface` establishes entry and exit points for developing [fluent interfaces](https://martinfowler.com/bliki/FluentInterface.html) and [pipeline patterns](https://en.wikipedia.org/wiki/Pipeline_(software)).
-2. The FoldaImp `trait` is a default implementation allowing for the passing in of an initial value and retrieving that value.
-3. The Fold `class` implements Foldable and uses FoldableImp along with static implementations for type-safe folding of common [PHP types](https://www.php.net/manual/en/language.types.intro.php).
+If you're looking to get up and running with minimal lift or learning curve decide whether you are wanting to do a more chain-based (fluent) or pipe-based approach.
+
+If you're lookng for the chaining, extend the `Fold` class, add methods to the extension, make the static call to `fold()` (instantiate as usual), **do what you want to do**, then call `unfold()`. Just make sure during the "do what you want to do" bit that each method returns something you know about or expected - usually another Foldable.
+
+Piping is a bit different, but simple, we hope.
+
+1. Extend the `Bend` class.
+2. Write an `__invoke` method in that class which takes one (type-safeable argument, which is the payload from the previous bend).
+3. Write a `__construct` method, if you want to accept arguments beyond the payload.
+4. Use the `Pipeline` class passing in the intial value followed by any number of `Bends`.
+5. Call the `unfold()` method just like you would in a fluent interface.
 
 ## Installation
 
@@ -14,11 +22,7 @@ composer require 8fold/php-foldable
 
 ## Usage
 
-See also:
-
-- [Interface only class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestInterfaceOnly.php); essentially the implementation of the [FoldableImp trait](https://github.com/8fold/php-foldable/blob/master/src/FoldableImp.php)
-- [Traits only class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestTraitOnly.php); essentially the imlementation of the [Fold class](https://github.com/8fold/php-foldable/blob/master/src/Fold.php)
-- [TestExtension class](https://github.com/8fold/php-foldable/blob/master/tests/TestClasses/TestExtension.php) demonstrating how to extend the library.
+Our [tests](https://github.com/8fold/php-foldable/tree/master/tests) and are a good place to start. If you have any questions, please do post an issue.
 
 ## Details
 

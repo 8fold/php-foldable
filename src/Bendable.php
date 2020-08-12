@@ -4,11 +4,9 @@ namespace Eightfold\Foldable;
 
 use Eightfold\Foldable\Foldable;
 
-interface Bendable extends Foldable
+interface Bendable
 {
-    static public function bend($payload);
+    static public function bend();
 
-    static public function bendWith($payload, ...$args);
-
-    public function __invoke($payload, ...$args);
+    static public function bendWith(...$args);
 }
