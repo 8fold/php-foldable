@@ -10,7 +10,7 @@ use Eightfold\Foldable\Tests\Bends\ArrayToString;
 
 use Eightfold\Foldable\Pipeline;
 
-class ChainingTest extends TestCase
+class PipingTest extends TestCase
 {
     public function test_piping()
     {
