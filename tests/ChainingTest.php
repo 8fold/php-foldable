@@ -26,7 +26,7 @@ class ChainingTest extends TestCase
             ReverseBool::bend(),
             ReverseBool::bend()
         )->unfold();
-        $this->assertEqualsWithPerformance($expected, $actual, 1);
+        $this->assertEqualsWithPerformance($expected, $actual, 1.2);
 
         $this->start = hrtime(true);
         $expected = false;
