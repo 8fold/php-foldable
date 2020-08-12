@@ -7,8 +7,8 @@ use Eightfold\Foldable\Foldable;
 
 trait FoldableImp
 {
-    protected $main;
-    protected $args;
+    protected $main = "";
+    protected $args = [];
 
     static public function fold(...$args): Foldable
     {
@@ -17,9 +17,11 @@ trait FoldableImp
 
     public function __construct(...$args)
     {
-        $this->main = $args[0];
-        unset($args[0]);
-        $this->args = $args;
+        if (count($args) > 0) {
+            $this->main = $args[0];
+            unset($args[0]);
+            $this->args = $args;
+        }
     }
 
     public function unfold()
