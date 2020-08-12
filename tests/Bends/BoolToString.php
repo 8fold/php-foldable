@@ -34,6 +34,6 @@ class BoolToString implements Foldable
 
     public function __invoke(bool $payload): string
     {
-        return ! $payload;
+        return ($payload) ? "true" : "false";
     }
 }

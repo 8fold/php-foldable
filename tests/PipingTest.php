@@ -14,13 +14,15 @@ class PipingTest extends TestCase
 {
     public function test_piping()
     {
-        $expect = "f!a!l!s!e";
+        $expected = "f!a!l!s!e";
         $actual = Pipeline::fold(true,
             ReverseBool::bend(),
             BoolToString::bend(),
             StringToArray::bend(),
             ArrayToString::bendWith("!")
         )->unfold();
+        $this->assertEqualsWithPerformance($expected, $actual, 1);
+
         $expected = true;
         $actual = Pipeline::fold(true,
             ReverseBool::bend(),

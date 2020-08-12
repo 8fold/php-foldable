@@ -9,9 +9,10 @@ If you're lookng for the chaining, extend the `Fold` class, add methods to the e
 Piping is a bit different, but simple, we hope.
 
 1. Extend the `Bend` class.
-2. Write an `__invoke` method in that class. (The first argument will be the payload from the previous bend, any other argument will be filled in from arguments passed during construction.)
-3. Use the `Pipeline` class passing in the intial value followed by any number of `Bends`.
-4. Call the `unfold()` method just like you would in a fluent interface.
+2. Write an `__invoke` method in that class which takes one (type-safeable argument, which is the payload from the previous bend).
+3. Write a `__construct` method, if you want to accept arguments beyond the payload.
+4. Use the `Pipeline` class passing in the intial value followed by any number of `Bends`.
+5. Call the `unfold()` method just like you would in a fluent interface.
 
 ## Installation
 

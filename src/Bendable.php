@@ -9,6 +9,4 @@ interface Bendable
     static public function bend();
 
     static public function bendWith(...$args);
-
-    public function __construct(...$args);
 }
