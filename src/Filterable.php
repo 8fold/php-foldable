@@ -6,7 +6,7 @@ use Eightfold\Foldable\Foldable;
 
 interface Filterable
 {
-    static public function bend();
+    static public function apply();
 
-    static public function bendWith(...$args);
+    static public function applyWith(...$args);
 }

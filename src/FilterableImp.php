@@ -4,12 +4,12 @@ namespace Eightfold\Foldable;
 
 trait FilterableImp
 {
-    static public function bend()
+    static public function apply()
     {
         return static::bendWith();
     }
 
-    static public function bendWith(...$args)
+    static public function applyWith(...$args)
     {
         return new static(...$args);
     }
