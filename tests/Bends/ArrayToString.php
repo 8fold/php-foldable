@@ -2,9 +2,9 @@
 
 namespace Eightfold\Foldable\Tests\Bends;
 
-use Eightfold\Foldable\Bend;
+use Eightfold\Foldable\Filter;
 
-class ArrayToString extends Bend
+class ArrayToString extends Filter
 {
     private $glue = "";
 
