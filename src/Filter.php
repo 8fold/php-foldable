@@ -8,11 +8,11 @@ use League\Pipeline\Pipeline;
 use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\FoldableImp;
 
-use Eightfold\Foldable\Bendable;
-use Eightfold\Foldable\BendableImp;
+use Eightfold\Foldable\Filterable;
+use Eightfold\Foldable\FilterableImp;
 
 /**
- * A Bend is simialar to a Fold in that it is the atomic class.
+ * A Filter is simialar to a Fold in that it is the atomic class.
  *
  * See `Tests\Bends\ArrayToString` see how extending this class can reduce your
  * workload. All the other implementations replicate this skeleton for fine-
@@ -22,7 +22,7 @@ use Eightfold\Foldable\BendableImp;
  * defined interfaces while giving your flexibility for argument lists as
  * improved type safety.
  */
-abstract class Bend implements Foldable, Bendable
+abstract class Filter implements Foldable, Filterable
 {
-    use FoldableImp, BendableImp;
+    use FoldableImp, FilterableImp;
 }

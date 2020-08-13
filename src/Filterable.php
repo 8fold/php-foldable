@@ -4,7 +4,7 @@ namespace Eightfold\Foldable;
 
 use Eightfold\Foldable\Foldable;
 
-interface Bendable
+interface Filterable
 {
     static public function bend();
 

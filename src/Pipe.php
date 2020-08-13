@@ -7,7 +7,7 @@ use League\Pipeline\Pipeline as LeaguePipeline;
 use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\FoldableImp;
 
-class Pipeline implements Foldable
+class Pipe implements Foldable
 {
     use FoldableImp;
 

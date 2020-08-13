@@ -2,7 +2,7 @@
 
 namespace Eightfold\Foldable;
 
-trait BendableImp
+trait FilterableImp
 {
     static public function bend()
     {
