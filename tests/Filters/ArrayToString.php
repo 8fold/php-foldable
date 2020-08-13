@@ -1,6 +1,6 @@
 <?php
 
-namespace Eightfold\Foldable\Tests\Bends;
+namespace Eightfold\Foldable\Tests\Filters;
 
 use Eightfold\Foldable\Filter;
 

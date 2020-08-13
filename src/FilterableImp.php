@@ -6,7 +6,7 @@ trait FilterableImp
 {
     static public function apply()
     {
-        return static::bendWith();
+        return static::applyWith();
     }
 
     static public function applyWith(...$args)

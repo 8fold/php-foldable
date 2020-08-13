@@ -1,6 +1,6 @@
 <?php
 
-namespace Eightfold\Foldable\Tests\Bends;
+namespace Eightfold\Foldable\Tests\Filters;
 
 use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\FoldableImp;
@@ -12,12 +12,12 @@ class BoolToString implements Foldable
     /**
      * Does not take payload. Just addtional arguments for `__invoke()`.
      */
-    static public function bend()
+    static public function apply()
     {
-        return static::bendWith();
+        return static::applyWith();
     }
 
-    static public function bendWith(...$args)
+    static public function applyWith(...$args)
     {
         return new static(...$args);
     }
