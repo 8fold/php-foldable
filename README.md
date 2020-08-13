@@ -32,6 +32,7 @@ Primary goals are:
 
 1. Allow for type-safety while given you flexibility in what that means.
 2. Speed. This is a low-level library meant for high-extensibility adding as little processing overhead as possible. Our baseline for performance tests (which is most of them) is 0.3 milliseconds. (If you know of ways to improve the speed, feel free to submit an issue or PR).
+3. Anit-null. Whenever possible, we do not accept `null` as a required paramater and do avoid returning null whenever possible. We are not defensive with it; so, much of that responsbility is left to the user.
 
 ## Other
 

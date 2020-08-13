@@ -24,6 +24,13 @@ trait FoldableImp
         }
     }
 
+    public function args($includeMain = false)
+    {
+        return ($includeMain)
+            ? array_merge([$this->main], $this->args)
+            : $this->args;
+    }
+
     public function unfold()
     {
         if (is_a($this->main, Foldable::class)) {
