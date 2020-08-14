@@ -26,7 +26,7 @@ trait FoldableImp
 
     public function args($includeMain = false)
     {
-        return ($includeMain)
+        return ($includeMain and ! empty($this->main))
             ? array_merge([$this->main], $this->args)
             : $this->args;
     }
