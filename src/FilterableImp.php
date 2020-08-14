@@ -13,4 +13,9 @@ trait FilterableImp
     {
         return new static(...$args);
     }
+
+    public function unfoldUsing($payload)
+    {
+        return $this($payload);
+    }
 }

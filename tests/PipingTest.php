@@ -21,7 +21,7 @@ class PipingTest extends TestCase
             StringToArray::apply(),
             ArrayToString::applyWith("!")
         )->unfold();
-        $this->assertEqualsWithPerformance($expected, $actual, 1);
+        $this->assertEqualsWithPerformance($expected, $actual, 1.05);
 
         $expected = true;
         $actual = Pipe::fold(true,
@@ -38,6 +38,30 @@ class PipingTest extends TestCase
         $this->start = hrtime(true);
         $expected = true;
         $actual = Pipe::fold(true)->unfold();
+        $this->assertEqualsWithPerformance($expected, $actual);
+
+        $expected = [];
+        $actual = Pipe::fold()->args();
+        $this->assertEqualsWithPerformance($expected, $actual);
+
+        $expected = [];
+        $actual = Pipe::fold()->args(true);
+        $this->assertEqualsWithPerformance($expected, $actual);
+
+        $expected = [];
+        $actual = Pipe::fold(true)->args();
+        $this->assertEqualsWithPerformance($expected, $actual);
+
+        $expected = [true];
+        $actual = Pipe::fold(true)->args(true);
+        $this->assertEqualsWithPerformance($expected, $actual);
+    }
+
+    public function test_filters()
+    {
+        $payload = ["8", "f", "o", "l", "d"];
+        $expected = "8fold";
+        $actual = ArrayToString::apply()->unfoldUsing($payload);
         $this->assertEqualsWithPerformance($expected, $actual);
     }
 }
