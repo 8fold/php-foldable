@@ -7,7 +7,7 @@ use Eightfold\Foldable\Foldable;
 
 trait FoldableImp
 {
-    protected $main = "";
+    protected $main;
     protected $args = [];
 
     static public function fold(...$args): Foldable
@@ -26,9 +26,11 @@ trait FoldableImp
 
     public function args($includeMain = false)
     {
-        return ($includeMain and ! empty($this->main))
-            ? array_merge([$this->main], $this->args)
-            : $this->args;
+        $args = $this->args;
+        if ($includeMain and $this->main !== null) {
+            return array_merge([$this->main], $args);
+        }
+        return $args;
     }
 
     public function unfold()
