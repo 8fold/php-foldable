@@ -59,9 +59,14 @@ class PipingTest extends TestCase
 
     public function test_filters()
     {
+        $expected = [false];
+        $actual = BoolToString::applyWith(false)->args(true);
+        $this->assertEqualsWithPerformance($expected, $actual);
+
+        $this->start = hrtime(true);
         $payload = ["8", "f", "o", "l", "d"];
         $expected = "8fold";
         $actual = ArrayToString::apply()->unfoldUsing($payload);
-        $this->assertEqualsWithPerformance($expected, $actual);
+        $this->assertEqualsWithPerformance($expected, $actual, 2);
     }
 }
