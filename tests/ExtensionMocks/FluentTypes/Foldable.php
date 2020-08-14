@@ -1,6 +1,6 @@
 <?php
 
-namespace Eightfold\Foldable\Tests\TestClasses;
+namespace Eightfold\Foldable\Tests\ExtensionMocks\FluentTypes;
 
 use Eightfold\Foldable\Foldable as FoldableInterface;
 use Eightfold\Foldable\FoldableImp;

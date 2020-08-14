@@ -4,7 +4,7 @@ namespace Eightfold\Foldable\Tests;
 
 use Eightfold\Foldable\Tests\TestCase;
 
-use Eightfold\Foldable\Tests\TestClasses\Foldable;
+use Eightfold\Foldable\Tests\ExtensionMocks\FluentTypes\Foldable;
 
 class FluentTest extends TestCase
 {
@@ -14,6 +14,7 @@ class FluentTest extends TestCase
      */
     public function test_chaining()
     {
+        $this->start = hrtime(true);
         $expected = true;
         $actual = Foldable::fold(true)->toggle()->toggleFluent()->unfold();
         $this->assertEqualsWithPerformance($expected, $actual);
@@ -24,6 +25,7 @@ class FluentTest extends TestCase
      */
     public function test_fold_and_unfold()
     {
+        $this->start = hrtime(true);
         $expected = true;
         $actual = Foldable::fold(true)->unfold();
         $this->assertEqualsWithPerformance($expected, $actual);

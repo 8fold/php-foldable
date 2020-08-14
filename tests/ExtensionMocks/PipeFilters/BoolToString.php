@@ -1,6 +1,6 @@
 <?php
 
-namespace Eightfold\Foldable\Tests\Filters;
+namespace Eightfold\Foldable\Tests\ExtensionMocks\PipeFilters;
 
 use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\FoldableImp;
