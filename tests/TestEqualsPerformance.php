@@ -4,6 +4,7 @@ namespace Eightfold\Shoop\Tests\TestClasses;
 
 use PHPUnit\Framework\TestCase;
 
+use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\Filterable;
 use Eightfold\Foldable\FilterableImp;
 
@@ -34,13 +35,13 @@ class AssertEqualsFluent extends TestCase implements Filterable
 
     public function unfoldUsing($using)
     {
-        $actual = (is_a($using, Shooped::class)) ? $using->unfold() : $using;
+        $actual = (is_a($using, Foldable::class)) ? $using->unfold() : $using;
 
         $end = hrtime(true);
 
         $this->assertEquals($this->expected, $actual);
 
-        $actual = (is_a($using, Shooped::class))
+        $actual = (is_a($using, Foldable::class))
             ? get_class($using)
             : gettype($using);
         $this->assertEquals($this->expectedClassName, $actual);
