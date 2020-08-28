@@ -1,14 +1,13 @@
 <?php
 
-namespace Eightfold\Shoop\Tests\TestClasses;
+namespace Eightfold\Foldable\Tests;
 
 use PHPUnit\Framework\TestCase;
 
 use Eightfold\Foldable\Foldable;
+
 use Eightfold\Foldable\Filterable;
 use Eightfold\Foldable\FilterableImp;
-
-use Eightfold\Shoop\Shooped;
 
 class AssertEqualsFluent extends TestCase implements Filterable
 {
