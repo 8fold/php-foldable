@@ -17,7 +17,7 @@ class FluentTest extends TestCase
         $this->start = hrtime(true);
         $expected = true;
         $actual = Foldable::fold(true)->toggle()->toggleFluent()->unfold();
-        $this->assertEqualsWithPerformance($expected, $actual);
+        $this->assertEqualsWithPerformance($expected, $actual, 0.31);
     }
 
     /**
