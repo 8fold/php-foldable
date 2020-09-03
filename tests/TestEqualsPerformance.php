@@ -40,9 +40,9 @@ class TestEqualsPerformance extends TestCase implements Filterable
 
         $this->assertEquals($this->expected, $actual);
 
-        $actual = (is_a($using, Foldable::class))
-            ? get_class($using)
-            : gettype($using);
+        $actual = (is_a($actual, Foldable::class))
+            ? get_class($actual)
+            : gettype($actual);
         $this->assertEquals($this->expectedClassName, $actual);
 
         $elapsed = $end - $this->start;
