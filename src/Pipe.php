@@ -13,6 +13,12 @@ class Pipe implements Foldable
 
     public function unfold()
     {
-        return (new LeaguePipeline(null, ...$this->args))->process($this->main);
+        $payload = $this->main;
+        foreach ($this->args as $filter) {
+            if (is_callable($filter)) {
+                $payload = $filter($payload);
+            }
+        }
+        return $payload;
     }
 }
