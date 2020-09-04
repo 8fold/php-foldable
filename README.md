@@ -1,20 +1,6 @@
 # 8fold Foldable
 
-Foldable gives you `interfaces`, `traits`, and `classes` to facilitate easy creation of [fluent interfaces](https://en.wikipedia.org/wiki/Fluent_interface) and [pipe and filter](https://en.wikipedia.org/wiki/Pipeline_(software)) implementations.
-
-The idea is to create the opening and closing and let you develop the points in between.
-
-If you're looking to get up and running with minimal lift or learning curve decide whether you are wanting to do a more chain-based (fluent) or pipe-based approach.
-
-If you're lookng for the chaining, extend the `Fold` class, add methods to the extension, make the static call to `fold()` (instantiate as usual), **do what you want to do**, then call `unfold()`. Just make sure during the "do what you want to do" bit that each method returns something you know about or expected - usually another Foldable.
-
-Piping is a bit different, but simple, we hope.
-
-1. Extend the `Filter` class.
-2. Write an `__invoke` method in the `Filter` accepting one, type-safeable argument, which is either the initial value or the output of the previous filter.
-3. If you want to accept arguments, write a `__construct` method that accepts those arguments.
-4. Use the `Pipe` class to start with your initial payload, followed by any number of `Filters`.
-5. Call the `unfold()` method just like you would in a fluent interface.
+Foldable is a low-level, lighweight library to facilitate the creation of higher-level wrappers and fluent interfaces.
 
 ## Installation
 
@@ -24,13 +10,157 @@ composer require 8fold/php-foldable
 
 ## Usage
 
-Our [tests](https://github.com/8fold/php-foldable/tree/master/tests) and are a good place to start. If you have any questions, please do post an issue.
+**Foldables** can either extend the `Fold` class, use the `FoldableImp` default implementation, or implement the `Foldable` interface. Note: The `Fold` class uses and implements the Foldable default implementation and interface.
+
+```php
+class MyFoldable extends Fold
+{
+	public function append(string $string): MyFoldable
+	{
+		$this->main = $this->main . $string;
+
+		return $this;
+
+		// Note: If you would like to be more immutable in the implementation, you
+		// could also return a new instance of your MyFoldable class.
+		// return MyFoldable::fold(...$this->args(true));
+	}
+}
+
+print MyFoldable::fold("Hello")->append(", World!")->unfold();
+// output: Hello, World!
+```
+
+The `fold()` static initializer (or named constructor) can take an infinite number of arguments. For the defulat implementation, the first argument is stored as `main` while the others are stored as an array called `args`. To help facilitate immutability, you can retrieve the arguments provided by calling the `args` method; you can also specify that you want the completely list, including main, by calling `args(true)`.
+
+**Filters** are PHP classes implementing the `__invoke` magic method; thereby becoming more like a namespaced global function in the standard library.
+
+```php
+class Append extends Filter
+{
+	private $appendage = "";
+
+	public function __construct(string $appendage)
+	{
+		$this->appendage = $appendage;
+	}
+
+	public function __invoke(string $using): string
+	{
+		return $using . $this->appendage;
+	}
+}
+
+print Apply::append(", World!")->unfoldUsing("Hello");
+// output: Hello, World!
+
+class MyFoldable extends Fold
+{
+	public function append(string $string): MyFoldable
+	{
+		$this->main = Append::applyWith($string)->unfoldUsing($this->main);
+
+		return $this;
+	}
+}
+
+print MyFoldable::fold("Hello")->append(", World!")->unfold();
+// output: Hello, World!
+```
+
+**Pipes** can be used to apply multiple filters in sequence from a starting point.
+
+```php
+class Append extends Filter
+{
+	private $appendage = "";
+
+	public function __construct(string $appendage)
+	{
+		$this->appendage = $appendage;
+	}
+
+	public function __invoke(string $using): string
+	{
+		return $using . $appendage;
+	}
+}
+
+class Prepend extends Filter
+{
+	private $prependage = "";
+
+	public function __construct(string $prependage)
+	{
+		$this->prependage = $prependage;
+	}
+
+	public function __invoke(string $using): string
+	{
+		return Apply::append($this->prependage)->unfoldUsing($using);
+	}
+}
+
+$result = Pipe::fold("World",
+	Apply::prepend("Hello, "),
+	Apply::append("!")
+)->unfold();
+// output: Hello, World!
+
+// you can allow filters to take pipes as well
+$result = Pipe::fold("World",
+	Apply::prepend(
+		Pipe::fold("ello",
+			Apply::prepend("H"),
+			Apply::append(","),
+			Apply::append(" ")
+		)
+	),
+	Apply::append("!")
+)->unfold();
+```
+
+We also provide an assertion filter in the tests directory call `PerformantEqualsTestFilter`, which can be used to test equality and performance of `Foldables` and `Filters`.
+
+```php
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+
+use Eightfold\Foldable\Tests\PerformantEqualsTestFilter as AssertEquals;
+
+class TestCase extends PHPUnitTestCase
+{
+	/**
+	 * @test
+	 */
+	public function test_something()
+	{
+		AssertEquals::applyWith(
+			"expected result",
+			"expected type",
+			"maximum milliseconds"
+		)->unfoldUsing(
+			Pipe::fold("World",
+				Apply::prepend(
+					Pipe::fold("ello",
+						Apply::prepend("H"),
+						Apply::append(","),
+						Apply::append(" ")
+					)
+				),
+				Apply::append("!")
+			)
+		);
+	}
+}
+```
+
+The start time is start at initialization and stopped after unfolding the passed Foldable or assigning the passed value.
 
 ## Details
 
 Primary goals are:
 
-1. Allow for type-safety while given you flexibility in what that means.
+1. Allow for type-safety while giving you flexibility in what that means.
 2. Speed. This is a low-level library meant for high-extensibility adding as little processing overhead as possible. Our baseline for performance tests (which is most of them) is 0.3 milliseconds. (If you know of ways to improve the speed, feel free to submit an issue or PR).
 3. Anit-null. Whenever possible, we do not accept `null` as a required paramater and do avoid returning null whenever possible. We are not defensive with it; so, much of that responsbility is left to the user.
 

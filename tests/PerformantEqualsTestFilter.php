@@ -9,7 +9,7 @@ use Eightfold\Foldable\Foldable;
 use Eightfold\Foldable\Filterable;
 use Eightfold\Foldable\FilterableImp;
 
-class TestEqualsPerformance extends TestCase implements Filterable
+class PerformantEqualsTestFilter extends TestCase implements Filterable
 {
     use FilterableImp;
 
