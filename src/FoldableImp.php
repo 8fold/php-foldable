@@ -26,7 +26,7 @@ trait FoldableImp
 
     public function main()
     {
-        return $this->msin;
+        return $this->main;
     }
 
     public function args($includeMain = false)
