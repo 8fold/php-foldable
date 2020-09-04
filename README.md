@@ -22,9 +22,9 @@ class MyFoldable extends Fold
     return $this;
 
     // Note: If you prefer immutability, you can always create a new instance
-    // 		of the MyFoldable class:
+    //       of the MyFoldable class:
     //
-    // 		return MyFoldable::fold(...$this->args(true));
+    //       return MyFoldable::fold(...$this->args(true));
   }
 }
 
