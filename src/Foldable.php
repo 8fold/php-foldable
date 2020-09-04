@@ -7,6 +7,8 @@ interface Foldable
 {
     static public function fold(...$args): Foldable;
 
+    public function main();
+
     public function args($includeMain = false);
 
     public function unfold();

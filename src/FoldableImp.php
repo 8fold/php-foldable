@@ -24,11 +24,17 @@ trait FoldableImp
         }
     }
 
+    public function main()
+    {
+        return $this->msin;
+    }
+
     public function args($includeMain = false)
     {
         $args = $this->args;
-        if ($includeMain and $this->main !== null) {
-            return array_merge([$this->main], $args);
+        if ($includeMain) {
+            $main = $this->main();
+            return array_merge([$main], $args);
         }
         return $args;
     }
