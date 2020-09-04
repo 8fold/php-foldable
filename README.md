@@ -15,16 +15,16 @@ composer require 8fold/php-foldable
 ```php
 class MyFoldable extends Fold
 {
-	public function append(string $string): MyFoldable
-	{
-		$this->main = $this->main . $string;
+  public function append(string $string): MyFoldable
+  {
+    $this->main = $this->main . $string;
 
-		return $this;
+    return $this;
 
-		// Note: If you would like to be more immutable in the implementation, you
-		// could also return a new instance of your MyFoldable class.
-		// return MyFoldable::fold(...$this->args(true));
-	}
+	// Note: If you would like to be more immutable in the implementation, you
+	// could also return a new instance of your MyFoldable class.
+	// return MyFoldable::fold(...$this->args(true));
+  }
 }
 
 print MyFoldable::fold("Hello")->append(", World!")->unfold();
@@ -38,17 +38,13 @@ The `fold()` static initializer (or named constructor) can take an infinite numb
 ```php
 class Append extends Filter
 {
-	private $appendage = "";
-
-	public function __construct(string $appendage)
-	{
-		$this->appendage = $appendage;
-	}
-
-	public function __invoke(string $using): string
-	{
-		return $using . $this->appendage;
-	}
+  public function __invoke($using): string
+  {
+      if (is_a($using, Pipe::class)) {
+          return $using->unfold() . $this->main;
+      }
+      return $using . $this->main;
+  }
 }
 
 print Apply::append(", World!")->unfoldUsing("Hello");
@@ -56,12 +52,12 @@ print Apply::append(", World!")->unfoldUsing("Hello");
 
 class MyFoldable extends Fold
 {
-	public function append(string $string): MyFoldable
-	{
-		$this->main = Append::applyWith($string)->unfoldUsing($this->main);
+  public function append(string $string): MyFoldable
+  {
+    $this->main = Append::applyWith($string)->unfoldUsing($this->main);
 
-		return $this;
-	}
+    return $this;
+  }
 }
 
 print MyFoldable::fold("Hello")->append(", World!")->unfold();
@@ -71,52 +67,30 @@ print MyFoldable::fold("Hello")->append(", World!")->unfold();
 **Pipes** can be used to apply multiple filters in sequence from a starting point.
 
 ```php
-class Append extends Filter
-{
-	private $appendage = "";
-
-	public function __construct(string $appendage)
-	{
-		$this->appendage = $appendage;
-	}
-
-	public function __invoke(string $using): string
-	{
-		return $using . $appendage;
-	}
-}
-
 class Prepend extends Filter
 {
-	private $prependage = "";
-
-	public function __construct(string $prependage)
-	{
-		$this->prependage = $prependage;
-	}
-
-	public function __invoke(string $using): string
-	{
-		return Apply::append($this->prependage)->unfoldUsing($using);
-	}
+  public function __invoke(string $using): string
+  {
+      return Append::applyWith($using)->unfoldUsing($this->main);
+  }
 }
 
 $result = Pipe::fold("World",
-	Apply::prepend("Hello, "),
-	Apply::append("!")
+  Apply::prepend("Hello, "),
+  Apply::append("!")
 )->unfold();
 // output: Hello, World!
 
 // you can allow filters to take pipes as well
 $result = Pipe::fold("World",
-	Apply::prepend(
-		Pipe::fold("ello",
-			Apply::prepend("H"),
-			Apply::append(","),
-			Apply::append(" ")
-		)
-	),
-	Apply::append("!")
+  Apply::prepend(
+    Pipe::fold("ello",
+      Apply::prepend("H"),
+      Apply::append(","),
+      Apply::append(" ")
+    )
+  ),
+  Apply::append("!")
 )->unfold();
 ```
 
@@ -129,28 +103,28 @@ use Eightfold\Foldable\Tests\PerformantEqualsTestFilter as AssertEquals;
 
 class TestCase extends PHPUnitTestCase
 {
-	/**
-	 * @test
-	 */
-	public function test_something()
-	{
-		AssertEquals::applyWith(
-			"expected result",
-			"expected type",
-			"maximum milliseconds"
-		)->unfoldUsing(
-			Pipe::fold("World",
-				Apply::prepend(
-					Pipe::fold("ello",
-						Apply::prepend("H"),
-						Apply::append(","),
-						Apply::append(" ")
-					)
-				),
-				Apply::append("!")
-			)
-		);
-	}
+  /**
+  * @test
+  */
+  public function test_something()
+  {
+    AssertEquals::applyWith(
+      "expected result",
+      "expected type",
+      0.4 // maximum milliseconds
+    )->unfoldUsing(
+      Pipe::fold("World",
+        Apply::prepend(
+          Pipe::fold("ello",
+            Apply::prepend("H"),
+            Apply::append(","),
+            Apply::append(" ")
+          )
+        ),
+        Apply::append("!")
+      )
+    );
+  }
 }
 ```
 
