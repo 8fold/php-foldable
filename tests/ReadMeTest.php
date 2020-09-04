@@ -79,7 +79,7 @@ class ReadMeTest extends PHPUnitTestCase
             Pipe::fold("World",
                 Prepend::applyWith(
                     Pipe::fold("ello",
-                        Prepend::applyWith("H", $appendFilter),
+                        Prepend::applyWith("H"),
                         Append::applyWith(","),
                         Append::applyWith(" ")
                     )
