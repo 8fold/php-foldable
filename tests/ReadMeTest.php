@@ -27,7 +27,7 @@ class ReadMeTest extends PHPUnitTestCase
         AssertEquals::applyWith(
             "Hello, World!",
             "string",
-            0.35 // 0.34 // 0.32
+            2.19 // 0.35 // 0.34 // 0.32
         )->unfoldUsing(
             MyFoldable::fold("Hello")->append(", World!")
         );
@@ -41,7 +41,7 @@ class ReadMeTest extends PHPUnitTestCase
         AssertEquals::applyWith(
             "Hello, World!",
             "string",
-            0.19 // 0.17 // 0.16
+            0.71 // 0.19 // 0.17 // 0.16
         )->unfoldUsing(
             Append::applyWith(", World!")->unfoldUsing("Hello")
         );
@@ -86,6 +86,28 @@ class ReadMeTest extends PHPUnitTestCase
                 ),
                 Append::applyWith("!")
             )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function apply_filter_checks()
+    {
+        AssertEquals::applyWith(
+            true,
+            "boolean",
+            0.36
+        )->unfoldUsing(
+            Apply::filterClassExists(Append::class)
+        );
+
+        AssertEquals::applyWith(
+            false,
+            "boolean",
+            0.36
+        )->unfoldUsing(
+            Apply::filterClassExists(stdClass::class)
         );
     }
 }
