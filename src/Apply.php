@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Eightfold\Foldable;
 
@@ -9,14 +10,17 @@ abstract class Apply
     // TODO: type check return Filterable
     static public function __callStatic(string $filterName, array $arguments = [])
     {
-        $filterName = ucfirst($filterName);
-        $className = static::rootNameSpaceForFilters() ."\\". $filterName;
-        if (! static::filterClassExists($className)) {
-            trigger_error("Filterable not found: {$className}");
-        }
+        $className = static::classNameForFilter($filterName);
         return (count($arguments) === 0)
             ? $className::apply()
             : $className::applyWith(...$arguments);
+    }
+
+    static public function classNameForFilter($filterName)
+    {
+        $filterName = ucfirst($filterName);
+        $className = static::rootNameSpaceForFilters() ."\\". $filterName;
+        return $className;
     }
 
     // TODO: type check return - boolean
@@ -27,5 +31,8 @@ abstract class Apply
     }
 
     // TODO: type check return - string
-    abstract static public function rootNameSpaceForFilters();
+    static public function rootNameSpaceForFilters()
+    {
+        return __NAMESPACE__ ."\\Filter";
+    }
 }
