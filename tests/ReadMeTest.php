@@ -27,7 +27,7 @@ class ReadMeTest extends PHPUnitTestCase
             "Hello, World!",
             "string",
             2.19, // 0.35 // 0.34 // 0.32
-            74
+            75
         )->unfoldUsing(
             MyFoldable::fold("Hello")->append(", World!")
         );
