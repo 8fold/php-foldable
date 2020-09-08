@@ -3,7 +3,6 @@
 namespace Eightfold\Foldable\Tests;
 
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-
 use Eightfold\Foldable\Tests\PerformantEqualsTestFilter as AssertEquals;
 
 use Eightfold\Foldable\Tests\Extensions\MyFoldable;
@@ -27,7 +26,8 @@ class ReadMeTest extends PHPUnitTestCase
         AssertEquals::applyWith(
             "Hello, World!",
             "string",
-            2.19 // 0.35 // 0.34 // 0.32
+            2.19, // 0.35 // 0.34 // 0.32
+            75
         )->unfoldUsing(
             MyFoldable::fold("Hello")->append(", World!")
         );
