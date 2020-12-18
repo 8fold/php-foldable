@@ -39,6 +39,8 @@ trait FoldableImp
         return $args;
     }
 
+    // TODO: Non-shoop extensions may not unfold properly with custom objects
+    //      as the unfold cascades
     public function unfold()
     {
         if (is_a($this->main, Foldable::class)) {
