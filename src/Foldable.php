@@ -5,11 +5,11 @@ namespace Eightfold\Foldable;
 
 interface Foldable
 {
-    static public function fold(...$args): Foldable;
+    public static function fold(...$args): Foldable;
 
     public function main();
 
-    public function args($includeMain = false);
+    public function args(bool $includeMain = false);
 
     public function unfold();
 }

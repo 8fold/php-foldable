@@ -1,0 +1,6 @@
+suites:
+  acme_suite:
+    namespace: Eightfold\Foldable
+    psr4_prefix: Eightfold\Foldable
+    src_path: src
+    spec_prefix: tests_phpspec

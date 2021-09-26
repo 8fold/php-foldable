@@ -7,21 +7,27 @@ use Eightfold\Foldable\Foldable;
 
 trait FoldableImp
 {
-    protected $main;
-    protected $args = [];
+    private $args = [];
 
-    static public function fold(...$args): Foldable
+    public static function fold(...$args): Foldable
     {
-        return new static(...$args);
+        if (count($args) === 0) {
+            return new Fold();
+        }
+
+        if (count($args) === 1) {
+            return new Fold($args[0]);
+        }
+
+        $main = array_shift($args);
+        return new Fold($main, ...$args);
     }
 
-    public function __construct(...$args)
+    private function __construct(
+        private $main = null,
+        ...$args)
     {
-        if (count($args) > 0) {
-            $this->main = $args[0];
-            unset($args[0]);
-            $this->args = $args;
-        }
+        $this->args = $args;
     }
 
     public function main()
@@ -29,21 +35,17 @@ trait FoldableImp
         return $this->main;
     }
 
-    public function args($includeMain = false)
+    public function args(bool $includeMain = false): array
     {
-        $args = $this->args;
-        if ($includeMain) {
-            $main = $this->main();
-            return array_merge([$main], $args);
-        }
-        return $args;
+        return ($includeMain)
+            ? array_merge([$this->main()], $this->args())
+            : $this->args;
     }
 
     public function unfold()
     {
-        if (is_a($this->main, Foldable::class)) {
-            return $this->main->unfold();
-        }
-        return $this->main;
+        return (is_a($this->main(), Fold::class))
+            ? $this->main()->unfold()
+            : $this->main();
     }
 }
