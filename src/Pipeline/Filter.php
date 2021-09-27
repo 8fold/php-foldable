@@ -24,25 +24,5 @@ use Eightfold\Foldable\Pipeline\FilterableImp;
  */
 class Filter implements Foldable, Filterable
 {
-    use FoldableImp; // , FilterableImp;
-
-    public static function applyWith(...$args): Filterable
-    {
-        return new Filter(...$args);
-    }
-
-    public static function apply(): Filterable
-    {
-        return static::applyWith();
-    }
-
-    public function unfoldUsing(...$args)
-    {
-        return $this($args);
-    }
-
-    public function __invoke($payload)
-    {
-        return $payload;
-    }
+    use FoldableImp, FilterableImp;
 }

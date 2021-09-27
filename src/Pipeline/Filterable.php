@@ -6,9 +6,9 @@ namespace Eightfold\Foldable\Pipeline;
 
 interface Filterable
 {
-    static public function apply(): Filterable;
+    public static function applyWith(...$args): Filterable;
 
-    static public function applyWith(...$args): Filterable;
+    public static function apply(): Filterable;
 
-    public function unfoldUsing($payload);
+    public function unfoldUsing(...$args);
 }
