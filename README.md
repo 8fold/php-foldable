@@ -1,6 +1,6 @@
 # 8fold Foldable
 
-Foldable is a low-level, lighweight library to facilitate the creation of higher-level wrappers and fluent interfaces.
+Foldable is a low-level, lighweight library to facilitate creating procedural sequences and manipulate data types using [fluent interfaces](https://en.wikipedia.org/wiki/Fluent_interface#PHP), [pipelines](https://en.wikipedia.org/wiki/Pipeline_(software)), or both.
 
 ## Installation
 
@@ -10,22 +10,34 @@ composer require 8fold/php-foldable
 
 ## Usage
 
+The primary concept and implementation is the Fold. The concept is available as a `class`, `trait`, and `interface`. The Fold affords developers an entry and exit methodology for crating fluent interfaces; as such, it's typical to extend the Fold class and not use it directly.
+
+The secondary concept and implementation is the pipeline via the Pipe `class` and Filter `class`, `trait` and `interface`.
+
+
+
+
+
+
+
+
+
 **Foldables** can either extend the `Fold` class, use the `FoldableImp` default implementation, or implement the `Foldable` interface. Note: The `Fold` class uses and implements the Foldable default implementation and interface.
 
 ```php
 class MyFoldable extends Fold
 {
-  public function append(string $string): MyFoldable
-  {
-    $this->main = $this->main . $string;
+	public function append(string $string): MyFoldable
+	{
+		$this->main = $this->main . $string;
 
-    return $this;
+		return $this;
 
-    // Note: If you prefer immutability, you can always create a new instance
-    //       of the MyFoldable class:
-    //
-    //       return MyFoldable::fold(...$this->args(true));
-  }
+		// Note: If you prefer immutability, you can always create a new instance
+		//       of the MyFoldable class:
+		//
+		//       return MyFoldable::fold(...$this->args(true));
+	}
 }
 
 print MyFoldable::fold("Hello")->append(", World!")->unfold();
@@ -39,13 +51,13 @@ The `fold()` static initializer (or named constructor) can take an infinite numb
 ```php
 class Append extends Filter
 {
-  public function __invoke($using): string
-  {
-      if (is_a($using, Pipe::class)) {
-          return $using->unfold() . $this->main;
-      }
-      return $using . $this->main;
-  }
+	public function __invoke($using): string
+	{
+			if (is_a($using, Pipe::class)) {
+					return $using->unfold() . $this->main;
+			}
+			return $using . $this->main;
+	}
 }
 
 print Apply::append(", World!")->unfoldUsing("Hello");
@@ -53,12 +65,12 @@ print Apply::append(", World!")->unfoldUsing("Hello");
 
 class MyFoldable extends Fold
 {
-  public function append(string $string): MyFoldable
-  {
-    $this->main = Append::applyWith($string)->unfoldUsing($this->main);
+	public function append(string $string): MyFoldable
+	{
+		$this->main = Append::applyWith($string)->unfoldUsing($this->main);
 
-    return $this;
-  }
+		return $this;
+	}
 }
 
 print MyFoldable::fold("Hello")->append(", World!")->unfold();
@@ -70,28 +82,28 @@ print MyFoldable::fold("Hello")->append(", World!")->unfold();
 ```php
 class Prepend extends Filter
 {
-  public function __invoke(string $using): string
-  {
-      return Append::applyWith($using)->unfoldUsing($this->main);
-  }
+	public function __invoke(string $using): string
+	{
+			return Append::applyWith($using)->unfoldUsing($this->main);
+	}
 }
 
 $result = Pipe::fold("World",
-  Apply::prepend("Hello, "),
-  Apply::append("!")
+	Apply::prepend("Hello, "),
+	Apply::append("!")
 )->unfold();
 // output: Hello, World!
 
 // you can allow filters to take pipes as well
 $result = Pipe::fold("World",
-  Apply::prepend(
-    Pipe::fold("ello",
-      Apply::prepend("H"),
-      Apply::append(","),
-      Apply::append(" ")
-    )
-  ),
-  Apply::append("!")
+	Apply::prepend(
+		Pipe::fold("ello",
+			Apply::prepend("H"),
+			Apply::append(","),
+			Apply::append(" ")
+		)
+	),
+	Apply::append("!")
 )->unfold();
 ```
 
@@ -104,28 +116,28 @@ use Eightfold\Foldable\Tests\PerformantEqualsTestFilter as AssertEquals;
 
 class TestCase extends PHPUnitTestCase
 {
-  /**
-  * @test
-  */
-  public function test_something()
-  {
-    AssertEquals::applyWith(
-      "expected result",
-      "expected type",
-      0.4 // maximum milliseconds
-    )->unfoldUsing(
-      Pipe::fold("World",
-        Apply::prepend(
-          Pipe::fold("ello",
-            Apply::prepend("H"),
-            Apply::append(","),
-            Apply::append(" ")
-          )
-        ),
-        Apply::append("!")
-      )
-    );
-  }
+	/**
+	* @test
+	*/
+	public function test_something()
+	{
+		AssertEquals::applyWith(
+			"expected result",
+			"expected type",
+			0.4 // maximum milliseconds
+		)->unfoldUsing(
+			Pipe::fold("World",
+				Apply::prepend(
+					Pipe::fold("ello",
+						Apply::prepend("H"),
+						Apply::append(","),
+						Apply::append(" ")
+					)
+				),
+				Apply::append("!")
+			)
+		);
+	}
 }
 ```
 

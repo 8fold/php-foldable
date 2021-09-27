@@ -1,6 +1,6 @@
 <?php
 
-namespace Eightfold\Foldable;
+namespace Eightfold\Foldable\Pipeline;
 
 trait FilterableImp
 {

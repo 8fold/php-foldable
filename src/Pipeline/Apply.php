@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Eightfold\Foldable;
+namespace Eightfold\Foldable\Pipeline;
 
-use Eightfold\Foldable\Filterable;
+use Eightfold\Foldable\Pipeline\Filterable;
 
 abstract class Apply
 {

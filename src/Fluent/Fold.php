@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Eightfold\Foldable;
+namespace Eightfold\Foldable\Fluent;
 
-use Eightfold\Foldable\Foldable;
-use Eightfold\Foldable\FoldableImp;
+use Eightfold\Foldable\Fluent\Foldable;
+use Eightfold\Foldable\Fluent\FoldableImp;
 
 /**
  * Atomic class for developing fluent-based, as opposed to pipeline-based, APIs.

@@ -1,8 +1,8 @@
 <?php
 
-namespace tests_phpspec\Eightfold\Foldable;
+namespace tests_phpspec\Eightfold\Foldable\Fluent;
 
-use Eightfold\Foldable\Fold;
+use Eightfold\Foldable\Fluent\Fold;
 use PhpSpec\ObjectBehavior;
 
 class FoldSpec extends ObjectBehavior
@@ -12,7 +12,7 @@ class FoldSpec extends ObjectBehavior
         $this->beConstructedThrough("fold");
     }
 
-    public function it_uses_factory_instantiator()
+    public function it_uses_factory_initializer()
     {
         $this->shouldHaveType(Fold::class);
     }
@@ -52,7 +52,5 @@ class FoldSpec extends ObjectBehavior
         $this->beConstructedThrough("fold", [$a, "Hello, 8fold!"]);
 
         $this->unfold()->shouldReturn("Hello, World!");
-
-        $this->args()->shouldReturn(["Hello, 8fold!"]);
     }
 }

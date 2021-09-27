@@ -14,7 +14,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5.10",
-    "phpspec/phpspec": "^7.1"
+    "phpspec/phpspec": "^7.1",
+    "phpstan/phpstan": "^0.12.99"
   },
   "autoload": {
     "psr-4": {
@@ -31,6 +32,9 @@
   },
   "prefer-stable": true,
   "scripts": {
-    "spec": "./vendor/bin/phpspec run"
+    "spec": "./vendor/bin/phpspec run",
+    "stan": "./vendor/bin/phpstan analyze",
+    "production": ["@spec", "@stan"],
+    "prod": "@production"
   }
 }

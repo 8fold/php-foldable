@@ -1,8 +1,8 @@
 <?php
 
-namespace Eightfold\Foldable;
+namespace Eightfold\Foldable\Pipeline;
 
-use Eightfold\Foldable\Foldable;
+// use Eightfold\Foldable\Fluent\Foldable;
 
 interface Filterable
 {
