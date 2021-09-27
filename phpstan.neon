@@ -1,4 +1,14 @@
 parameters:
-	level: 1
+	level: 6
 	paths:
 		- src
+	ignoreErrors:
+		- '#Eightfold\\Foldable\\Pipeline\\Filter::applyWith\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfoldUsing\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfoldUsing\(\) has no return typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filter::__invoke\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filter::__invoke\(\) has no return typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filterable::applyWith\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has no return typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::unfold\(\) has no return typehint specified\.#'

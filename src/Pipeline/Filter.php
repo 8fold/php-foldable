@@ -22,16 +22,16 @@ use Eightfold\Foldable\Pipeline\FilterableImp;
  * defined interfaces while giving your flexibility for argument lists as
  * improved type safety.
  */
-class Filter implements Foldable //, Filterable
+class Filter implements Foldable, Filterable
 {
     use FoldableImp; // , FilterableImp;
 
-    public static function applyWith(...$args)
+    public static function applyWith(...$args): Filterable
     {
-        return static::fold(...$args);
+        return new Filter(...$args);
     }
 
-    public static function apply()
+    public static function apply(): Filterable
     {
         return static::applyWith();
     }
