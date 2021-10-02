@@ -5,6 +5,7 @@ parameters:
 	checkMissingIterableValueType: false
 	paths:
 		- src
+	checkMissingIterableValueType: false
 	ignoreErrors:
 		- '#Eightfold\\Foldable\\Fluent\\Foldable::fold\(\) has (.*) no typehint specified.#'
 		- '#Eightfold\\Foldable\\Fluent\\Foldable::__construct\(\) has (.*) no typehint specified.#'
@@ -33,3 +34,6 @@ parameters:
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::__construct\(\) has (.*) no typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::main\(\) has no return typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::unfold\(\) has no return typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::fold\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::__construct\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::main\(\) has no return typehint specified\.#'
