@@ -7,7 +7,7 @@ interface Foldable
 {
     public static function fold(...$args): Foldable;
 
-    public function __construct($main = null, ...$args);
+    public function __construct(...$args);
 
     public function main();
 

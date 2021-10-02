@@ -1,6 +1,9 @@
 # 8fold Foldable
 
-Foldable is a low-level, lighweight library to facilitate creating procedural sequences and manipulate data types using [fluent interfaces](https://en.wikipedia.org/wiki/Fluent_interface#PHP), [pipelines](https://en.wikipedia.org/wiki/Pipeline_(software)), or both.
+Foldable is a low-level, lighweight library to facilitate creating procedural
+sequences and manipulate data types using
+[fluent interfaces](https://en.wikipedia.org/wiki/Fluent_interface#PHP),
+[pipelines](https://en.wikipedia.org/wiki/Pipeline_(software)), or both.
 
 ## Installation
 
@@ -10,39 +13,67 @@ composer require 8fold/php-foldable
 
 ## Usage
 
-The primary concept and implementation is the Fold. The concept is available as a `class`, `trait`, and `interface`. The Fold affords developers an entry and exit methodology for crating fluent interfaces; as such, it's typical to extend the Fold class and not use it directly.
+The primary concept and implementation is the Fold. The concept is available as
+a `class`, `trait`, and `interface`. The Fold affords developers an entry and
+exit methodology for crating fluent interfaces; as such, it's typical to extend
+the Fold class and not use it directly.
 
-The secondary concept and implementation is the pipeline via the Pipe `class` and Filter `class`, `trait` and `interface`.
+The secondary concept and implementation is the pipeline via the Pipe `class`
+and Filter `class`, `trait` and `interface`.
 
+### Fold (Fluent)
 
+The Foldable `interface` establishes a standard set of methods for constructing a generic wrapper. Pass in basic PHP types, class instances, and so on. The `fold` `method` is a static initializer and accepts any number of argument values. The first argument can be retrieved through the `main` `method` or the `args` `method` when passing `true`. You can then retrieve the result of any manipulation by using the `unfold` `method`.
 
+The FoldableImp `trait` contains the default implementation for each method in the Foldable `interface`. Folding any number of arguments results in them being stored in the instance. The `main` `method` will return the first argument received (after an manipulations performed). The `args` `method` will return all the others (after any manipulations performed); passing `true` to the `method` will result in receiving all the arguments including the one you can retrieve from the `main` `method`.
 
+The Fold `class` implements the Foldable `interface` and uses the FoldableImp `trait`. You can extend this class and overrid any of the `methods` as you see fit. In fact, that's usually the recommended way to go about things. If you would like to establish `typehints` for your implementation you should be able to implement the Foldable `interface` without the `trait` and add the typehints to the `methods`.
 
+```php
+class MyFoldable extends Fold
+{
+  public function unfold(): string
+  {
+  	$otherWords = $this->args();
 
+  	return $this->main() .", ". $otherWords[1];
+  }
+}
 
+print MyFoldable::fold("Hello", "World!")->unfold();
+// output: Hello, World!
+```
 
-
-**Foldables** can either extend the `Fold` class, use the `FoldableImp` default implementation, or implement the `Foldable` interface. Note: The `Fold` class uses and implements the Foldable default implementation and interface.
+For creating a fluent interface, you can create other methods that either return the current instance or instantiates a new one (if you prefer pure immutability).
 
 ```php
 class MyFoldable extends Fold
 {
 	public function append(string $string): MyFoldable
 	{
-		$this->main = $this->main . $string;
+		$this->main = $this->main() . $string;
 
 		return $this;
-
-		// Note: If you prefer immutability, you can always create a new instance
-		//       of the MyFoldable class:
-		//
-		//       return MyFoldable::fold(...$this->args(true));
+		// return MyFoldable::fold($this->main);
 	}
 }
 
 print MyFoldable::fold("Hello")->append(", World!")->unfold();
 // output: Hello, World!
+// note: We did not overwrite the unfold method.
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 The `fold()` static initializer (or named constructor) can take an infinite number of arguments. For the defulat implementation, the first argument is stored as `main` while the others are stored as an array called `args`. To help facilitate immutability, you can retrieve the arguments provided by calling the `args` method; you can also specify that you want the completely list, including main, by calling `args(true)`.
 
