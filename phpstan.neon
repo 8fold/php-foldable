@@ -2,6 +2,7 @@ parameters:
 	level: 6
 	paths:
 		- src
+	checkMissingIterableValueType: false
 	ignoreErrors:
 		- '#Eightfold\\Foldable\\Pipeline\\Filter::applyWith\(\) has (.*) no typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfoldUsing\(\) has (.*) no typehint specified\.#'
@@ -12,3 +13,6 @@ parameters:
 		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has (.*) no typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has no return typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::unfold\(\) has no return typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::fold\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::__construct\(\) has (.*) no typehint specified\.#'
+		- '#Eightfold\\Foldable\\Pipeline\\Pipe::main\(\) has no return typehint specified\.#'

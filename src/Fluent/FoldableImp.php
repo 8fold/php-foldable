@@ -7,7 +7,7 @@ use Eightfold\Foldable\Fluent\Foldable;
 
 trait FoldableImp
 {
-    private $args = [];
+    private array $args = [];
 
     public static function fold(...$args): Foldable
     {
