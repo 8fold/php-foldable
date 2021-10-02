@@ -12,16 +12,6 @@ class FilterSpec extends ObjectBehavior
         $this->shouldHaveType(Filter::class);
     }
 
-    public function it_can_be_invoked()
-    {
-        $this(false)->shouldReturn(false);
-    }
-
-    public function it_can_be_invoked_with_a_payload()
-    {
-        $this(true)->shouldReturn(true);
-    }
-
     public function it_can_be_applied()
     {
         $this->beConstructedThrough("apply");
@@ -49,6 +39,6 @@ class FilterSpec extends ObjectBehavior
     {
         $this->beConstructedThrough("applyWith", ["Hello, World!"]);
 
-        $this->unfoldUsing("Hello, 8fold!")->shouldReturn(["Hello, 8fold!"]);
+        $this->unfoldUsing("Hello, 8fold!")->shouldReturn(["Hello, World!", "Hello, 8fold!"]);
     }
 }
