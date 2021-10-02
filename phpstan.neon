@@ -33,8 +33,3 @@ parameters:
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::fold\(\) has (.*) no typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::__construct\(\) has (.*) no typehint specified\.#'
 		- '#Eightfold\\Foldable\\Pipeline\\Pipe::main\(\) has no return typehint specified\.#'
-
-		- '#Eightfold\\Foldable\\Pipeline\\Apply::__callStatic\(\) has no return typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Apply::classNameForFilter\(\) has (.*) typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Apply::filterClassExists\(\) has no return typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Apply::rootNameSpaceForFilters\(\) has no return typehint specified\.#'

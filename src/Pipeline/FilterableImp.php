@@ -4,17 +4,17 @@ namespace Eightfold\Foldable\Pipeline;
 
 trait FilterableImp
 {
-    static function applyWith(...$args): Filterable
+    public static function applyWith(...$args): Filterable
     {
         return new Filter(...$args);
     }
 
-    static function apply(): Filterable
+    public static function apply(): Filterable
     {
         return static::applyWith();
     }
 
-    function unfoldUsing(...$args)
+    public function unfoldUsing(...$args)
     {
         return array_merge($this->args(includeMain: true), $args);
     }

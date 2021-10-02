@@ -1,13 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Eightfold\Foldable\Pipeline;
 
-// use League\Pipeline\Pipeline;
-
 use Eightfold\Foldable\Fluent\Foldable;
 use Eightfold\Foldable\Fluent\FoldableImp;
-
 use Eightfold\Foldable\Pipeline\Filterable;
 use Eightfold\Foldable\Pipeline\FilterableImp;
 
@@ -24,5 +22,6 @@ use Eightfold\Foldable\Pipeline\FilterableImp;
  */
 class Filter implements Foldable, Filterable
 {
-    use FoldableImp, FilterableImp;
+    use FoldableImp;
+    use FilterableImp;
 }
