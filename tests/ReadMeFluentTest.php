@@ -16,7 +16,7 @@ use Eightfold\Foldable\Filter;
 
 use Eightfold\Foldable\Pipe;
 
-class ReadMeTest extends PHPUnitTestCase
+class ReadMeFluentTest extends PHPUnitTestCase
 {
     /**
      * @test
@@ -26,7 +26,7 @@ class ReadMeTest extends PHPUnitTestCase
         AssertEquals::applyWith(
             "Hello, World!",
             "string",
-            2.19, // 0.35 // 0.34 // 0.32
+            0,
             75
         )->unfoldUsing(
             MyFoldable::fold("Hello")->append(", World!")

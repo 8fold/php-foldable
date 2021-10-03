@@ -63,6 +63,9 @@ print MyFoldable::fold("Hello")->append(", World!")->unfold();
 // note: We did not overwrite the unfold method.
 ```
 
+### Filter
+
+
 
 
 
