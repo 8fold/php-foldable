@@ -1,35 +1,4 @@
 parameters:
 	level: 6
-	# Foldable is designed to accept any type and allow users the ability
-	# to add limits to that allowance.
-	checkMissingIterableValueType: false
 	paths:
 		- src
-	ignoreErrors:
-		- '#Eightfold\\Foldable\\Fluent\\Foldable::fold\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Foldable::__construct\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Foldable::main\(\) has no return typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Foldable::args\(\) has no return typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Foldable::unfold\(\) has no return typehint specified.#'
-
-		- '#Eightfold\\Foldable\\Fluent\\Fold::fold\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Fold::__construct\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Fold::main\(\) has no return typehint specified.#'
-		- '#Eightfold\\Foldable\\Fluent\\Fold::unfold\(\) has no return typehint specified.#'
-
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::fold\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::__construct\(\) has (.*) no typehint specified.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::main\(\) has no return typehint specified.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfold\(\) has no return typehint specified.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::applyWith\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfoldUsing\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filter::unfoldUsing\(\) has no return typehint specified\.#'
-
-		- '#Eightfold\\Foldable\\Pipeline\\Filterable::applyWith\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Filterable::unfoldUsing\(\) has no return typehint specified\.#'
-
-		- '#Eightfold\\Foldable\\Pipeline\\Pipe::unfold\(\) has no return typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Pipe::fold\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Pipe::__construct\(\) has (.*) no typehint specified\.#'
-		- '#Eightfold\\Foldable\\Pipeline\\Pipe::main\(\) has no return typehint specified\.#'
