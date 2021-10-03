@@ -1,6 +1,8 @@
 # Contributing
 
-Contributions are **welcome** and will be **credited**. We accept contributions via Pull Requests on [GitHub](https://github.com/8fold/php-shoop).
+Contributions are **welcome** and will be **credited**. We accept contributions via pull requests on [GitHub](https://github.com/8fold/php-shoop).
+
+Please run `composer run prod` before submitting the pull request to run unit tests, integration tests, static analysis, linters, and style ([PSR-12](https://www.php-fig.org/psr/psr-12/)).
 
 ## Priorities
 
