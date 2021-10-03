@@ -6,13 +6,17 @@ namespace Eightfold\Foldable\Fluent;
 
 interface Foldable
 {
-    public static function fold(...$args): Foldable;
+    public static function fold(mixed ...$args): Foldable;
 
-    public function __construct(...$args);
+    public function __construct(mixed ...$args);
 
-    public function main();
+    public function main(): mixed;
 
-    public function args(bool $includeMain = false);
+    /**
+     * @param  bool|boolean $includeMain
+     * @return array<mixed>
+     */
+    public function args(bool $includeMain = false): array;
 
-    public function unfold();
+    public function unfold(): mixed;
 }

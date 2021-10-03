@@ -11,7 +11,7 @@ class Pipe implements Foldable
 {
     use FoldableImp;
 
-    public function unfold()
+    public function unfold(): mixed
     {
         $payload = $this->main();
         foreach ($this->args(false) as $filter) {

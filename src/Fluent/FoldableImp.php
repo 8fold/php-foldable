@@ -8,24 +8,31 @@ use Eightfold\Foldable\Fluent\Foldable;
 
 trait FoldableImp
 {
+    /**
+     * @var array<mixed>
+     */
     private array $args = [];
 
-    public static function fold(...$args): Foldable
+    public static function fold(mixed ...$args): Foldable
     {
         return new static(...$args);
     }
 
-    public function __construct(...$args)
+    public function __construct(mixed ...$args)
     {
         $this->args = $args;
     }
 
-    public function main()
+    public function main(): mixed
     {
         $a = $this->args(true);
         return array_shift($a);
     }
 
+    /**
+     * @param  bool|boolean $includeMain
+     * @return array<mixed>
+     */
     public function args(bool $includeMain = false): array
     {
         if ($includeMain) {
@@ -38,7 +45,7 @@ trait FoldableImp
         return $a;
     }
 
-    public function unfold()
+    public function unfold(): mixed
     {
         return (is_a($this->main(), Fold::class))
             ? $this->main()->unfold()
